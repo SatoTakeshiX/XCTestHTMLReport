@@ -15,13 +15,15 @@ func removeUnattachedFiles(run: Run) -> Int {
 
     func shouldBeDeleted(fileURL: URL) -> Bool {
         /// Do not delete directories
+        Logger.success("fileURL: \(fileURL.absoluteString)")
         var isDir: ObjCBool = false
         if fileManager.fileExists(atPath: fileURL.path, isDirectory: &isDir), isDir.boolValue {
             return false
         }
 
-        let lastPathComponent = fileURL.lastPathComponent
-
+        let lastPathComponent = fileURL.lastPathComponent // file name
+        Logger.success("lastPathComponent: \(lastPathComponent.description)")
+        Logger.success("attachmentPathsLastItem: \(attachmentPathsLastItem.description)")
         if attachmentPathsLastItem.contains(lastPathComponent) {
             return false
         }
@@ -35,14 +37,16 @@ func removeUnattachedFiles(run: Run) -> Int {
 
     func searchFileURLs() throws -> [URL] {
         let topContents = try fileManager.contentsOfDirectory(at: run.file.url, includingPropertiesForKeys: nil)
+        //Logger.success("topContents: \(topContents.description)")
         let dataContents = try fileManager.contentsOfDirectory(at: run.file.url.appendingPathComponent("Data"), includingPropertiesForKeys: nil)
+        //Logger.success("dataContents: \(dataContents.description)")
         return topContents + dataContents
     }
 
     do {
         for fileURL in try searchFileURLs() {
             if shouldBeDeleted(fileURL: fileURL) {
-                try fileManager.removeItem(at: fileURL)
+                //try fileManager.removeItem(at: fileURL)
                 removedFiles += 1
             }
         }

@@ -11,3 +11,9 @@ xcuserdata/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
+XCTestHTMLReportSampleApp/merged_report_after_d.xcresult
+*.zip
+*.html
+XCTestHTMLReportSampleApp/merged_report_before_d.xcresult
+XCTestHTMLReportSampleApp/ResultBundle_iphone8.xcresult
+XCTestHTMLReportSampleApp/ResultBundle_iPodtouch.xcresult
