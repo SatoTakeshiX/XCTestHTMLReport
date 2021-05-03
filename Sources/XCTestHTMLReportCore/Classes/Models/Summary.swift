@@ -24,6 +24,7 @@ public struct Summary
             Logger.step("Parsing \(resultPath)")
             let url = URL(fileURLWithPath: resultPath)
             let resultFile = ResultFile(url: url)
+            // ここのinvocationRecordがなにかを確認する
             guard let invocationRecord = resultFile.getInvocationRecord() else {
                 Logger.warning("Can't find invocation record for : \(resultPath)")
                 break
@@ -67,7 +68,13 @@ public struct Summary
     public func deleteUnattachedFiles() {
         Logger.substep("Deleting unattached files..")
         var deletedFilesCount = 0
+        Logger.substep("runs counter: \(runs.count)")
+        // ここのrunsは普通だと1つ。マージしたやつだと２つだった
+        // rubyのflattern的なのをする？
+        // runsのどれかに入っているfileだけを削除する。
+
         for run in runs {
+            
             deletedFilesCount += removeUnattachedFiles(run: run)
         }
         Logger.substep("Deleted \(deletedFilesCount) unattached files")

@@ -17,3 +17,5 @@ XCTestHTMLReportSampleApp/merged_report_after_d.xcresult
 XCTestHTMLReportSampleApp/merged_report_before_d.xcresult
 XCTestHTMLReportSampleApp/ResultBundle_iphone8.xcresult
 XCTestHTMLReportSampleApp/ResultBundle_iPodtouch.xcresult
+*.md
+*.json

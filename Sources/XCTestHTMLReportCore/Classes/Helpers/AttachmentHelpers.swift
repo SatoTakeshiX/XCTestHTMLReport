@@ -23,6 +23,7 @@ extension Run {
         allAttachments.filter { $0.isScreenshot }
     }
 
+    // ここにmerge後の添付ファイルがない
     var allAttachments: [Attachment] {
         allTests.map({ $0.allAttachments }).reduce([], +)
     }
@@ -40,6 +41,8 @@ extension TestSummary {
 extension Test {
 
     var allAttachments: [Attachment] {
+        // subActivitiesもいれる！ -> 入れてた
+
         activities.map({ $0.allAttachments }).reduce([], +)
     }
 
@@ -52,6 +55,8 @@ extension Activity {
     }
 
     var allAttachments: [Attachment] {
+        //
+
         return attachments + subAttachments
     }
 

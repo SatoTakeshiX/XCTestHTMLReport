@@ -24,6 +24,7 @@ struct Run: HTML
         }
         return .success
     }
+    
     var allTests: [Test] {
         let tests = testSummaries.flatMap { $0.tests }
         return tests.flatMap { test -> [Test] in
@@ -68,6 +69,7 @@ struct Run: HTML
             Logger.warning("Can't find test reference for action \(action.title ?? "")")
             self.logContent = .none
         }
+        // ここがmergeの構造だとおかしいみたい
         self.testSummaries = testPlanSummaries.summaries
             .flatMap { $0.testableSummaries }
             .map { TestSummary(summary: $0, file: file, renderingMode: renderingMode) }
